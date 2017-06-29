@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope,$http) {
+  /* widget controller */
+  var c = this;
+	c.data.loading = true;
+	
+	 $http.get('api/now/table/incident?sysparm_query=active%3Dtrue').success(function(response){
+		 c.data.loading=false;
+		 c.data.list = response.result;
+	 })
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>k18_list_widget</id>
+        <internal>false</internal>
+        <link/>
+        <name>k18_list_widget</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-06-29 13:12:31</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>1ee68517db23320030ba7b1ebf9619b1</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>k18_list_widget</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sp_widget_1ee68517db23320030ba7b1ebf9619b1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-06-29 13:23:14</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+<!-- your widget template -->
+  <div class="panel-heading">
+    K18 List Widget
+  </div>
+  <div class="panel-body">
+    <span ng-if="c.data.loading"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+    <span class="sr-only"></span></span>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="item in c.data.list">{{item.number}}  -
+      {{item.short_description}} - {{item.priority}}</li>
+    </ul>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>
